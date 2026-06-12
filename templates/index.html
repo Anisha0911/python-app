@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Overlay Tool</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        color: white;
+    }
+
+    .card {
+        width: 100%;
+        max-width: 450px;
+        background: rgba(255,255,255,0.06);
+        border-radius: 18px;
+        padding: 25px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        backdrop-filter: blur(12px);
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-size: 14px;
+        color: #cbd5e1;
+        margin-top: 12px;
+        display: block;
+    }
+
+    input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 6px;
+        margin-bottom: 14px;
+        border-radius: 10px;
+        border: 1px solid #334155;
+        background: #0f172a;
+        color: white;
+        font-size: 13px;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(90deg, #3b82f6, #06b6d4);
+        color: white;
+        font-size: 15px;
+        cursor: pointer;
+        transition: 0.25s;
+    }
+
+    button:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 20px rgba(59,130,246,0.35);
+    }
+
+    .footer {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 15px;
+        color: #94a3b8;
+    }
+
+    /* ---------------- RESPONSIVE BREAKPOINTS ---------------- */
+
+    /* Tablet */
+    @media (max-width: 768px) {
+        .card {
+            max-width: 90%;
+            padding: 20px;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 480px) {
+        body {
+            padding: 10px;
+        }
+
+        .card {
+            max-width: 100%;
+            padding: 18px;
+            border-radius: 14px;
+        }
+
+        h2 {
+            font-size: 18px;
+        }
+
+        button {
+            font-size: 14px;
+            padding: 11px;
+        }
+    }
+
+    /* Small phones */
+    @media (max-width: 360px) {
+        h2 {
+            font-size: 16px;
+        }
+
+        label {
+            font-size: 13px;
+        }
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>🎬 Video Overlay Tool</h2>
+
+    <form action="/process" method="post" enctype="multipart/form-data">
+
+        <label>Upload Video</label>
+        <input type="file" name="video" required>
+
+        <label>Upload Image</label>
+        <input type="file" name="image" required>
+
+        <button type="submit">Generate Video</button>
+    </form>
+
+    <div class="footer">
+        Powered by Flask + MoviePy
+    </div>
+</div>
+<script>
+    // ✅ RESET FORM AFTER DOWNLOAD
+    const form = document.getElementById("videoForm");
+
+    form.addEventListener("submit", function () {
+        setTimeout(() => {
+            form.reset(); // clears inputs after request starts download
+        }, 2000);
+    });
+</script>
+
+</body>
+</html>
